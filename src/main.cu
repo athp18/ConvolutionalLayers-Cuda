@@ -43,21 +43,19 @@ int main()
     cudaMemcpy(d_kernel, h_kernel.data(), kernel_size * sizeof(float), cudaMemcpyHostToDevice);
     cudaCheckErrors("cudaMemcpy h_kernel to d_kernel failed");
 
-    // Define block and grid dimensions
     dim3 block(TILE_WIDTH, TILE_WIDTH);
     dim3 grid((IMAGE_WIDTH + block.x - 1) / block.x, (IMAGE_HEIGHT + block.y - 1) / block.y);
 
-    // Calculate shared memory size
+    // compute shared memory size
     int shared_mem_size = (TILE_WIDTH + 2 * (KERNEL_WIDTH / 2)) * (TILE_WIDTH + 2 * (KERNEL_HEIGHT / 2)) * sizeof(float);
 
-    // Launch the optimized kernel
+    // Launch the kernel
     launchConv2DOptimizedKernel(d_input, d_output,
                                 IMAGE_WIDTH, IMAGE_HEIGHT,
                                 KERNEL_WIDTH, KERNEL_HEIGHT,
                                 grid, block, shared_mem_size);
     cudaCheckErrors("Optimized Kernel launch failed");
 
-    // Alternatively, to launch the basic kernel, uncomment the following:
     /*
     launchConv2DBasicKernel(d_input, d_kernel, d_output,
                             IMAGE_WIDTH, IMAGE_HEIGHT,
