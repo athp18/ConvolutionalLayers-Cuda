@@ -1,3 +1,8 @@
+Implementing a 2D convolutional layer in CUDA.
+
+Still in progress. To do:
+- Run tests
+- Compare optimization
 ## Installation
 
 1. **Clone the Repository**
