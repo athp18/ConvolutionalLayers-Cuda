@@ -2,8 +2,8 @@
 
 1. **Clone the Repository**
     ```bash
-    git clone https://github.com/yourusername/cuda-convolution.git
-    cd cuda-convolution
+    git clone https://github.com/athp18/ConvolutionalLayers-Cuda.git
+    cd ConvolutionalLayers-Cuda
     ```
 
 2. **Create a Build Directory**
